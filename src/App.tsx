@@ -9,6 +9,7 @@ import { SummaryPanel } from './components/SummaryPanel';
 import { NoticeBanner } from './components/NoticeBanner';
 import { LoadingScreen } from './components/LoadingScreen';
 import { PrintableBoardingPass } from './components/PrintableBoardingPass';
+import { AmbientBackground } from './components/AmbientBackground';
 import { CARRIER, DESTINATION, FLIGHT_NUMBER, ORIGIN } from './data/flightInfo';
 import './App.css';
 
@@ -64,8 +65,11 @@ function FlightApp() {
 
 export default function App() {
   return (
-    <FlightProvider>
-      <FlightApp />
-    </FlightProvider>
+    <>
+      <AmbientBackground />
+      <FlightProvider>
+        <FlightApp />
+      </FlightProvider>
+    </>
   );
 }
