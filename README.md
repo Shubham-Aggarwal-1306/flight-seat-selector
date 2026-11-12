@@ -113,6 +113,13 @@ All of this lives in `flightReducer.ts` as pure, unit-testable transitions:
   seat) via a dismissible notice banner.
 - Simulated loading state on first load; responsive layout down to phone width.
 - **Bonus:** per-passenger meal selection (free and paid options), included in totals.
+- **Bonus:** "Print pass" per passenger (once a seat is assigned) opens the browser print
+  dialog with a dedicated boarding-pass layout — flight, passenger, seat, a deterministic
+  boarding pass number, and a scannable QR code encoding it. The QR is generated client-side
+  (`qrcode` package) from a payload built in `src/lib/boardingPass.ts`; nothing is sent over
+  the network. Printing is page-local UI state in `FlightContext` (not part of the booking
+  reducer), driven by the browser's `afterprint` event so the state resets whether the user
+  prints or cancels.
 
 ## Notes
 

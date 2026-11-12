@@ -8,6 +8,8 @@ import { MealSelector } from './components/MealSelector';
 import { SummaryPanel } from './components/SummaryPanel';
 import { NoticeBanner } from './components/NoticeBanner';
 import { LoadingScreen } from './components/LoadingScreen';
+import { PrintableBoardingPass } from './components/PrintableBoardingPass';
+import { CARRIER, DESTINATION, FLIGHT_NUMBER, ORIGIN } from './data/flightInfo';
 import './App.css';
 
 function FlightApp() {
@@ -19,13 +21,13 @@ function FlightApp() {
     <div className="app">
       <h1 className="sr-only">Purr Air — flight seat selection</h1>
       <div className="flight-strip">
-        <span className="flight-strip-carrier">Purr Air</span>
+        <span className="flight-strip-carrier">{CARRIER}</span>
         <span className="flight-strip-route">
-          <span>DEL</span>
+          <span>{ORIGIN}</span>
           <span className="flight-strip-route-line" aria-hidden="true" />
-          <span>BLR</span>
+          <span>{DESTINATION}</span>
         </span>
-        <span className="flight-strip-number">PX 204</span>
+        <span className="flight-strip-number">{FLIGHT_NUMBER}</span>
       </div>
 
       <p className="app-subhead">Pick your passengers, choose seats, and see the total cost update instantly.</p>
@@ -54,6 +56,8 @@ function FlightApp() {
           <SummaryPanel />
         </aside>
       </div>
+
+      <PrintableBoardingPass />
     </div>
   );
 }

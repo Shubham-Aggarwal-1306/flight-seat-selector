@@ -2,7 +2,7 @@ import { useFlight } from '../state/FlightContext';
 import { MEALS } from '../data/mealData';
 
 export function SummaryPanel() {
-  const { state, dispatch, passengerCost, totalCost } = useFlight();
+  const { state, dispatch, passengerCost, totalCost, requestPrint } = useFlight();
 
   return (
     <div className="panel summary-panel">
@@ -22,13 +22,18 @@ export function SummaryPanel() {
               <div className="summary-row-end">
                 <span className="summary-row-cost">₹{passengerCost(passenger)}</span>
                 {passenger.seatId && (
-                  <button
-                    type="button"
-                    className="link-button"
-                    onClick={() => dispatch({ type: 'REMOVE_SEAT', passengerId: passenger.id })}
-                  >
-                    Remove seat
-                  </button>
+                  <div className="summary-row-actions">
+                    <button type="button" className="link-button" onClick={() => requestPrint(passenger.id)}>
+                      Print pass
+                    </button>
+                    <button
+                      type="button"
+                      className="link-button"
+                      onClick={() => dispatch({ type: 'REMOVE_SEAT', passengerId: passenger.id })}
+                    >
+                      Remove seat
+                    </button>
+                  </div>
                 )}
               </div>
             </li>

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useReducer, type Dispatch, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useMemo, useReducer, useState, type Dispatch, type ReactNode } from 'react';
 import { buildSeatMap } from '../data/seatData';
 import { MEALS } from '../data/mealData';
 import { flightReducer, initialFlightState, type FlightAction } from './flightReducer';
@@ -11,6 +11,9 @@ interface FlightContextValue {
   selectedPassenger: Passenger | null;
   passengerCost: (passenger: Passenger) => number;
   totalCost: number;
+  printingPassengerId: string | null;
+  requestPrint: (passengerId: string) => void;
+  endPrint: () => void;
 }
 
 const FlightContext = createContext<FlightContextValue | null>(null);
@@ -50,6 +53,10 @@ export function FlightProvider({ children }: { children: ReactNode }) {
 
   const selectedPassenger = state.passengers.find((p) => p.id === state.selectedPassengerId) ?? null;
 
+  // Printing is a transient UI concern, not booking state, so it lives
+  // alongside the reducer rather than inside it.
+  const [printingPassengerId, setPrintingPassengerId] = useState<string | null>(null);
+
   const value: FlightContextValue = {
     state,
     dispatch,
@@ -57,6 +64,9 @@ export function FlightProvider({ children }: { children: ReactNode }) {
     selectedPassenger,
     passengerCost,
     totalCost,
+    printingPassengerId,
+    requestPrint: setPrintingPassengerId,
+    endPrint: () => setPrintingPassengerId(null),
   };
 
   return <FlightContext.Provider value={value}>{children}</FlightContext.Provider>;
