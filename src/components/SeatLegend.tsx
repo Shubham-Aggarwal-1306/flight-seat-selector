@@ -5,10 +5,10 @@ const ITEMS: { status: string; label: string }[] = [
   { status: 'occupied', label: 'Occupied' },
 ];
 
-const CATEGORIES: { category: string; label: string }[] = [
-  { category: 'standard', label: 'Standard · Free' },
-  { category: 'premium', label: 'Premium · ₹250' },
-  { category: 'extra-legroom', label: 'Extra Legroom · ₹350' },
+const CATEGORIES: { category: string; label: string; price: string }[] = [
+  { category: 'standard', label: 'Standard', price: 'Free' },
+  { category: 'premium', label: 'Premium', price: '₹250' },
+  { category: 'extra-legroom', label: 'Extra Legroom', price: '₹350' },
 ];
 
 export function SeatLegend() {
@@ -26,7 +26,7 @@ export function SeatLegend() {
         {CATEGORIES.map((item) => (
           <span key={item.category} className="legend-item">
             <span className={`legend-swatch seat--available seat--${item.category}`} />
-            {item.label}
+            {item.label} <span className="legend-price">{item.price}</span>
           </span>
         ))}
       </div>

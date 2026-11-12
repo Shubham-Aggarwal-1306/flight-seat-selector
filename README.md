@@ -5,6 +5,11 @@ passenger count, assign each passenger a seat on one of two aircraft layouts, pi
 optional meal per passenger, and see the total cost update live. All data is mocked —
 there is no backend.
 
+The UI is styled as a two-part boarding pass — a dark flight-header strip, a ticket-paper
+"coupon" holding the booking flow, a perforated tear-line, and a narrow "stub" holding the
+running total — rather than a generic dashboard, since that's the real object this task is
+modeling.
+
 ## Running it
 
 ```bash

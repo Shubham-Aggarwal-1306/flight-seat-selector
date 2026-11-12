@@ -6,7 +6,7 @@ export function SummaryPanel() {
 
   return (
     <div className="panel summary-panel">
-      <h2>Booking summary</h2>
+      <h2>Boarding stub</h2>
       <ul className="summary-list">
         {state.passengers.map((passenger) => {
           const meal = MEALS.find((m) => m.id === passenger.mealId);
@@ -16,8 +16,8 @@ export function SummaryPanel() {
                 <span className="summary-passenger-name">{passenger.name}</span>
                 <span className="summary-passenger-detail">
                   {passenger.seatId ? `Seat ${passenger.seatId}` : 'No seat selected'}
-                  {meal && meal.id !== 'none' ? ` · ${meal.name}` : ''}
                 </span>
+                {meal && meal.id !== 'none' && <span className="summary-passenger-detail">{meal.name}</span>}
               </div>
               <div className="summary-row-end">
                 <span className="summary-row-cost">₹{passengerCost(passenger)}</span>
@@ -39,6 +39,7 @@ export function SummaryPanel() {
         <span>Total</span>
         <span>₹{totalCost}</span>
       </div>
+      <div className="stub-barcode" aria-hidden="true" />
     </div>
   );
 }

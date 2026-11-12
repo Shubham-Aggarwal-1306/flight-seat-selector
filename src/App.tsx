@@ -17,15 +17,23 @@ function FlightApp() {
 
   return (
     <div className="app">
-      <header className="app-header">
-        <h1>Flight Seat Selection</h1>
-        <p>Pick your passengers, choose seats, and see the total cost update instantly.</p>
-      </header>
+      <h1 className="sr-only">Purr Air — flight seat selection</h1>
+      <div className="flight-strip">
+        <span className="flight-strip-carrier">Purr Air</span>
+        <span className="flight-strip-route">
+          <span>DEL</span>
+          <span className="flight-strip-route-line" aria-hidden="true" />
+          <span>BLR</span>
+        </span>
+        <span className="flight-strip-number">PX 204</span>
+      </div>
+
+      <p className="app-subhead">Pick your passengers, choose seats, and see the total cost update instantly.</p>
 
       <NoticeBanner />
 
-      <div className="app-layout">
-        <main className="app-main">
+      <div className="boarding-pass">
+        <main className="coupon">
           <div className="toolbar">
             <PassengerSetup />
             <LayoutToggle />
@@ -36,7 +44,13 @@ function FlightApp() {
           <MealSelector />
         </main>
 
-        <aside className="app-sidebar">
+        <div className="perforation" aria-hidden="true">
+          <span className="perforation-hole" />
+          <span className="perforation-line" />
+          <span className="perforation-hole" />
+        </div>
+
+        <aside className="stub">
           <SummaryPanel />
         </aside>
       </div>
