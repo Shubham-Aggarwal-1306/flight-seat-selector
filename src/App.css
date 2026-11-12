@@ -313,9 +313,64 @@
 }
 
 /* Seat map */
-.seat-map {
-  overflow-x: auto;
+.seat-map-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
   padding: 16px 0;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.seat-map {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.seat-info-panel {
+  flex-shrink: 0;
+  width: 168px;
+  padding: 14px 16px;
+  border: 1.5px dashed var(--rule);
+  border-radius: var(--radius-sm);
+  background: var(--paper-dim);
+}
+
+.seat-info-panel dl {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+}
+
+.seat-info-panel dt {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.seat-info-panel dd {
+  margin: 2px 0 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .seat-map-section {
+    flex-direction: column;
+  }
+
+  .seat-info-panel {
+    width: 100%;
+  }
+
+  .seat-info-panel dl {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+  }
 }
 
 .seat-map-header,
